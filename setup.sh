@@ -3,10 +3,6 @@
 clear
 
 echo
-echo -e "\e[1;34mCreating SSH keys.\e[0m"
-sshd-generate
-
-echo
 echo -e "\e[1;34mSetting up aliases.\e[0m"
 touch /root/.bash_aliases
 cp /opt/scripts/alias /root/.bash_aliases
