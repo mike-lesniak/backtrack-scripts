@@ -1,0 +1,244 @@
+Notes
+
+nmap2csv:  https://github.com/maaaaz/nmaptocsv
+
+Discover
+     Scan delay (default=0), --scan-delay 3
+     Randomize IPs (y/N), sort -R
+
+Add color to certain findings in the report.
+     Anonymous access: READ
+     VULNERABLE
+
+Add items to Firefox (setup.sh)
+     Extensions:
+          Firebug - https://addons.mozilla.org/en-US/firefox/addon/firebug/?src=search
+          Tamper Data - https://addons.mozilla.org/en-US/firefox/addon/tamper-data/?src=search
+          Web Developer - https://addons.mozilla.org/en-US/firefox/addon/web-developer/?src=search
+     Bookmarks:
+          Metasploit - https://localhost:3790/
+          Nessus - https://localhost:8834/
+          NeXpose - https://localhost:3780/
+          NSEDoc - nmap.org/nsedoc/
+
+Text
+     Find lines that start with FOO, if the line before it is blank, delete it           # Service Info:, | smb-mbenum:
+     Find lines that start with FOO, if the line after it is blank, delete original line
+
+##############################
+
+column -t                                           # Align second column
+
+sed "s/\b\(.\)/\u\1/g"                              # Capitalize the first letter of every word
+tr '[A-Z]' '[a-z]'                                  # Change to lower case
+cat -s                                              # Compress blank lines
+
+sed '/FOO/I,+12 d'                                  # Find lines that contain FOO, and delete that and the next 12 lines
+sed -i '/FOO/,${D}' file                            # Find lines that contain FOO, and delete to the end of file
+sed '1N;N;/\(.*\n\)\{2\}.*FOO/P;$d;D'               # Find lines that contain FOO, and print the second line before that
+sed '/[[:blank:]]/d'                                # Find lines that contain a single word
+
+grep 'FOO$'                                         # Find lines that end with FOO
+
+grep '^FOO'                                         # Find lines that start with FOO
+sed '/^FOO/{n;d;}'                                  # Find lines that start with FOO, and delete the following line
+printf '%s\n' 'g/^FOO/-1d' w | ed -s                # Find lines that start with FOO, and delete the previous line
+sed '/^FOO/i\ '                                     # Find lines that start with FOO, and insert a line before
+sed '/^FOO/a\ '                                     # Find lines that start with FOO, and insert a line after
+
+awk '{ print $2 " " $1 }'                           # Move the second column to the first position
+
+sed -n '/FOO/,$p'                                   # Print from FOO to the end of the file
+sed -n '5,/^$/p'                                    # Print from the 5th line to the first blank line
+
+sed '/^$/d'                                         # Remove blank lines
+awk '/^[[:space:]]*$/{p++;next} {for(i=0;i<p;i++){printf "\n"}; p=0; print}'                       # Remove blank lines from end of file
+sed 'n;d'                                           # Remove double spacing
+sed 's/^....//'                                     # Remove first 4 characters from each line
+sed '1,5d'                                          # Remove first 5 lines
+sed 's/^[ \t]*//;s/[ \t]*$//'                       # Remove leading and trailing whitespace from each line
+sed 's/^[ \t]*//'                                   # Remove leading whitespace from each line
+awk '!d && NF {sub(/^[[:blank:]]*/,""); d=1} d'	  # Remove leading whitespace from file
+sed 's/[ \t]*$//'                                   # Remove trailing whitespace from each line
+for a in z*; do grep -vE '^[\/\#\(\_\[\|\<\.\,\`\%\@]' "$a" > "$a.tmp"; mv "$a.tmp" "$a"; done     # Remove lines starting with various non-characters
+sed '/[[:blank:]]/!d'                               # Remove lines that contain a single word
+sed '/@.*@/d'                                       # Remove lines that contain two @ symbols
+sed '/^[0-9]/d'                                     # Remove lines that start with a number
+sed '/^FOO/d'                                       # Remove lines that start with FOO
+printf '%s\n' 'g/FOO/d\' '-d' w | ed -s             # Remove lines that contain FOO and the previous line
+
+sed 's/FOO/BAR/g'                                   # Replace FOO with BAR
+sed 's/FOO//g'                                      # Replace FOO with nothing                
+cat tmp | tr ';' '\n'                               # Replace semicolon with a new line
+
+##############################
+
+# Extract all IPs from a file
+
+grep -E '([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})' -o tmp
+
+##############################
+
+# Compare two dates
+
+date1=$(date +"%s")
+date2=$(date +"%s")
+diff=$(($date2-$date1))
+echo "$(($diff / 60)) min and $(($diff % 60)) sec."
+
+##############################
+
+# Color
+
+31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 
+
+echo -e "\e[1;34mThis is a blue text.\e[0m"
+
+##############################
+
+f_Test(){
+clear
+f_Banner
+echo "Test"
+echo
+echo "1.  Option #1"
+echo "2.  Option #2"
+echo "3.  Previous menu"
+echo
+echo -n "Choice: "
+read choice
+
+case $choice in
+     1) stuff;;
+     2) stuff;;
+     3) f_Main;;
+     *) f_Error;;
+esac
+
+##############################
+
+# Check for no answer
+if [ -z $location ]; then
+     f_Error
+     return 0
+fi
+
+# Check for wrong answer
+if [ ! -f $location ]; then
+     f_Error
+     return 0
+fi
+
+if [ -d /root/test ]; then
+     echo "This folder exists."
+fi
+
+if [ -f /root/test ]; then
+     echo "This file exists."
+fi
+
+# If folder doesn't exist, create it
+if [ ! -d /root/test ]; then
+     mkdir /root/test
+fi
+
+if [ ! -s test ]; then 
+     echo "This file is empty."
+fi
+
+if [ $(whoami) = "root" ]; then echo "You are running as root."; fi
+
+##############################
+
+# SSLv2
+for i in `cat 443.txt`; do echo -e "\n----START "$i"----" ; echo -e "HEAD / HTTP/1.0\n\n" | openssl s_client -connect "$i" -ssl2; echo -e "\n----END "$i"----"; done > SSLv2.txt
+
+# SSL renegotiation
+paste 443.txt | while read IP port; do echo "----START "$IP":"$port"----"; echo -e "HEAD / HTTP/1.0\nR\n\n" | ncat --ssl "$IP" "$port"; echo -e "\n----END "$IP":"$port"----\n"; done
+
+# DNS cache poisioning
+for i in `53.txt`; do dig @"$i" +short porttest.dns-oarc.net TXT; done; > DNSCachePoison.txt
+
+# DNS Server Spoofed Request Amplification DDoS
+for i in `cat 53.txt`; do dig @"$i" . NS; done > DNSRootAmpDoS.txt
+
+# HTTP TRACE or TRACK Methods Allowed
+paste 80.txt | while read IP port; do echo "----START "$IP":"$port"----"; echo -e "TRACE / HTTP/1.0\n\n" | ncat --ssl "$IP" "$port"; echo -e "\n----END "$IP":"$port"----\n"; done > trace.txt
+
+# Non-Recursive DNS Queries
+for i in `cat 53.txt`; do dig @"$i" www.google.com A +norecurse; done > DNS-NonRecurive.txt
+
+# Download a specific file from multiple IPs
+for i in `cat list.txt`; do curl -o "$i"_crossdomain.xml “http://"$i"/crossdomain.xml”; done
+
+for i in `cat 80.txt`; do curl -k -o "$i"_robots.txt “http://"$i"/robots.txt”; done
+
+##############################
+
+#!/bin/bash
+clear
+
+echo "SMTP open mail relay checker."
+
+if [[ $1 == "" ]]; then
+     echo "ERROR - Specify host."
+else
+     if [[ $2 == "" ]]; then
+          PORT=25
+     else
+          PORT=$2
+     fi
+
+cat >> tmp << EOF
+mail from: root@target.com
+rcpt to: leebaird@gmail.com
+data
+Subject: Testing open mail relay.
+Testing SMTP open mail relay from $1. 
+Have a nice day.
+.
+quit
+EOF
+	echo "[*] Using target $1:$PORT"
+	cat tmp | nc $1 $PORT 
+	rm tmp
+fi	
+
+##############################
+
+# 80 or 443
+use auxiliary/scanner/http/http_version
+use auxiliary/scanner/http/open_proxy
+use auxiliary/scanner/http/svn_scanner
+use auxiliary/scanner/http/webdav_scanner
+use auxiliary/scanner/http/http_put
+use auxiliary/scanner/http/cisco_device_manager
+use auxiliary/scanner/http/cisco_ios_auth_bypass
+use auxiliary/scanner/http/vmware_server_dir_trav
+
+##############################
+
+Maltego
+
+Use the scroll wheel to zoom in and out.
+Hold down the right mouse button to move around.
+
+Example 1
+Select Domain from the Entities palette on the left and drag the icon to the right.
+Edit the domain to your target.
+Right click > Run Transform > ...
+Email addresses from Domain > All
+
+DNS from Domain > All
+ctrl + down to select servers > Resolve to IP > All
+ctrl + down to select IPs > DNS from IP > All
+ctrl + down to select servers > Convert to Domain > All
+ctrl + down to select domains > Email addresses from Domain > All
+Select all emails > Other transforms > To Person, emailToMyspaceAccount, emailToFlickerAccount
+
+Example 2
+Select IPv4 Address from the Entities palette on the left and drag the icon to the right.
+Edit the IP address to your target.
+Right click > Run Transform > ...
+DNS from IP > All in this set
+

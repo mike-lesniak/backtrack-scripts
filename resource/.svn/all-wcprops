@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 26
+/svn/!svn/ver/520/resource
+END
+tftp.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/407/resource/tftp.rc
+END
+snmp.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/476/resource/snmp.rc
+END
+http.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/465/resource/http.rc
+END
+energizer-duo.rc
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/486/resource/energizer-duo.rc
+END
+h323.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/425/resource/h323.rc
+END
+pop3.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/407/resource/pop3.rc
+END
+listener.rc
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/520/resource/listener.rc
+END
+imap.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/407/resource/imap.rc
+END
+tomcat.rc
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/430/resource/tomcat.rc
+END
+ftp.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/476/resource/ftp.rc
+END
+ntp.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/425/resource/ntp.rc
+END
+afp.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/425/resource/afp.rc
+END
+adobe.rc
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/425/resource/adobe.rc
+END
+http-short.rc
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/465/resource/http-short.rc
+END
+telnet2.rc
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/431/resource/telnet2.rc
+END
+smb.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/476/resource/smb.rc
+END
+java.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/485/resource/java.rc
+END
+vxworks.rc
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/425/resource/vxworks.rc
+END
+smtp.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/476/resource/smtp.rc
+END
+post.rc
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/483/resource/post.rc
+END
+vnc.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/425/resource/vnc.rc
+END
+nfs.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/407/resource/nfs.rc
+END
+rmi.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/493/resource/rmi.rc
+END
+oracle2.rc
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/493/resource/oracle2.rc
+END
+telnet.rc
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/476/resource/telnet.rc
+END
+ssh.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/407/resource/ssh.rc
+END
+mssql.rc
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/476/resource/mssql.rc
+END
+vmware.rc
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/425/resource/vmware.rc
+END
+citrix.rc
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/425/resource/citrix.rc
+END
+netbios.rc
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/407/resource/netbios.rc
+END
+oracle.rc
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/478/resource/oracle.rc
+END
+mysql.rc
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/430/resource/mysql.rc
+END
+postgres.rc
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/490/resource/postgres.rc
+END
+db2.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/425/resource/db2.rc
+END
+x11.rc
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/425/resource/x11.rc
+END
+finger.rc
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/407/resource/finger.rc
+END
